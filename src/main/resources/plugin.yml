@@ -1,0 +1,8 @@
+name: AntiSwerPlugin
+version: 1.0
+author: booby
+main: me.booby.antiswerplugin.AntiSwerPlugin
+
+commands:
+  swer:
+    aliases: ["antiswer", "superswer", "sausageswer"]
