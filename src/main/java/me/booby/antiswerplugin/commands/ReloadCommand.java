@@ -13,7 +13,7 @@ public class ReloadCommand implements CommandExecutor {
         AntiSwerPlugin plugin = AntiSwerPlugin.getInstance();
 
         plugin.reloadConfig();
-        sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "reloaded the ultimate juicer banger night enderman anger wicked anti swer plugin reloaded" + ChatColor.RED + "bang.");
+        sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "reloaded the ultimate juicer banger night enderman anger wicked anti swer plugin reloaded " + ChatColor.RED + "bang.");
         // look at this i have made this fucking unreadable
 
         return false;
