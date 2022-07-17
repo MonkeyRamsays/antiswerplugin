@@ -1,6 +1,7 @@
 package me.booby.antiswerplugin.commands;
 
 import me.booby.antiswerplugin.AntiSwerPlugin;
+import me.booby.antiswerplugin.util.Color;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,7 +14,7 @@ public class ReloadCommand implements CommandExecutor {
         AntiSwerPlugin plugin = AntiSwerPlugin.getInstance();
 
         plugin.reloadConfig();
-        sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "reloaded the ultimate juicer banger night enderman anger wicked anti swer plugin reloaded " + ChatColor.RED + "bang.");
+        sender.sendMessage(Color.translate(plugin.getConfig().getString("messages.reload")));
         // look at this i have made this fucking unreadable
 
         return false;

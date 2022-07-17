@@ -1,12 +1,16 @@
 package me.booby.antiswerplugin.listener;
 
 import me.booby.antiswerplugin.AntiSwerPlugin;
+import me.booby.antiswerplugin.util.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+
+import java.text.MessageFormat;
 
 public class ChatListener implements Listener {
 
@@ -40,15 +44,17 @@ public class ChatListener implements Listener {
         // Object + "string whatigbdsrtgsf"
         // Object + Object + "string whatigbdsrtgsf"
 
+        FileConfiguration config = AntiSwerPlugin.getInstance().getConfig();
+
         // here we go thru every swer word in the config
-        for (String word : AntiSwerPlugin.getInstance().getConfig().getStringList("swer-words")) {
+        for (String word : config.getStringList("swer-words")) {
             // we see if the message is bad by checking if it contains this bad word
             boolean isBad = message.contains(word.toLowerCase());
 
             if (isBad) {
                 // if the message is bad we cancel event so chat doesn't send
                 event.setCancelled(true);
-                player.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + "do not swer.");
+                player.sendMessage(Color.translate(config.getString("messages.do-not-swer")));
 
                 // we go thru every online player
                 for (Player staffPlayer : Bukkit.getOnlinePlayers()) {
@@ -58,7 +64,9 @@ public class ChatListener implements Listener {
                         continue;
                     }
                     // down here we know that the player has the permission
-                    staffPlayer.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + player.getName() + ChatColor.GOLD + " has swor!! He said: " + ChatColor.RED + event.getMessage());
+                    staffPlayer.sendMessage(Color.translate(
+                            MessageFormat.format(config.getString("messages.alert"), player.getName(), event.getMessage())
+                    ));
                     // puugz taught me this i can now write ChatColor.RED
                 }
                 break;

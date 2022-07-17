@@ -4,6 +4,11 @@ swer-words:
   - bald
   - skessy
 
+messages:
+  reload: "&6&lreloaded the ultimate juicer banger night enderman anger wicked anti swer plugin reloaded &cbang."
+  do-not-swer: "&c&ldo not swer."
+  alert: "&c&l{0} has swor!! He said: &c{1}"
+
 # path: "something.somethingelse"
 # something:
 #   somethingelse: "dfsaasdfggfsd"
