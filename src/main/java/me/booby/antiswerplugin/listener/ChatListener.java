@@ -1,6 +1,7 @@
 package me.booby.antiswerplugin.listener;
 
 import me.booby.antiswerplugin.AntiSwerPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,12 +40,27 @@ public class ChatListener implements Listener {
         // Object + "string whatigbdsrtgsf"
         // Object + Object + "string whatigbdsrtgsf"
 
+        // here we go thru every swer word in the config
         for (String word : AntiSwerPlugin.getInstance().getConfig().getStringList("swer-words")) {
+            // we see if the message is bad by checking if it contains this bad word
             boolean isBad = message.contains(word.toLowerCase());
 
             if (isBad) {
+                // if the message is bad we cancel event so chat doesn't send
                 event.setCancelled(true);
                 player.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + "do not swer.");
+
+                // we go thru every online player
+                for (Player staffPlayer : Bukkit.getOnlinePlayers()) {
+                    // we check if they don't have this permission
+                    if (!staffPlayer.hasPermission("antiswer.see")) {
+                        // continue -> continues to the next player without doing anything in this case
+                        continue;
+                    }
+                    // down here we know that the player has the permission
+                    staffPlayer.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + player.getName() + ChatColor.GOLD + " has swor!! He said: " + ChatColor.RED + event.getMessage());
+                    // puugz taught me this i can now write ChatColor.RED
+                }
                 break;
             }
         }
