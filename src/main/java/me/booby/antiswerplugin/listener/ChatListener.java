@@ -26,7 +26,6 @@ public class ChatListener implements Listener {
         // 3 - e
         // 0 - o
 
-        // "shut the fuck up bitch ass motherfucker dick skessy"
         // 104 58 -> io4 58
 
         // event.getMessage() -> "m0th3rfuck3r"
